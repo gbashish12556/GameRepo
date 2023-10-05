@@ -13,7 +13,7 @@ class GameSelectInCircle(var dataSource: DataSource) :GameSelect {
     override suspend fun getNextGame(): Game {
 
         runBlocking{
-            if (games.isEmpty()){
+            if (::games.isInitialized){
                 fetchData()
             }
         }
