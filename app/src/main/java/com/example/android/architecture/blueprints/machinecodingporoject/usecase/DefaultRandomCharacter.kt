@@ -1,28 +1,31 @@
 package com.example.android.architecture.blueprints.machinecodingporoject.usecase
 
+import android.util.Log
+
 class DefaultRandomCharacter:RandomCharacters {
 
-    private var allChars = mutableListOf<String>("a","b","c","d","e","f","g","h","i","j",
-        "k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"
+    private var allChars = mutableListOf<String>("A","B","C","D","E","F","G","H","I","J",
+        "K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"
     )
 
 
     private var formedList = mutableListOf<String>();
 
-    override suspend fun getRandomCharacters(gameName: String): List<String> {
+    override suspend fun getRandomCharacters(gName: String): List<String> {
 
-        while (!gameName.isEmpty()){
+        var gameName = gName
+        while (!gameName.equals("")){
 
-            for(i in 0..(0..2).random()){
+            var rand =  (0..2).random()
+            for(i in 0..rand){
                 formedList.add(allChars.random())
             }
 
             var selectedChar = gameName.random().toString()
             formedList.add(selectedChar)
-            gameName.replace(selectedChar,"",false)
+            gameName  = gameName.replace(selectedChar,"",true)
 
         }
-
         return  formedList
 
     }
