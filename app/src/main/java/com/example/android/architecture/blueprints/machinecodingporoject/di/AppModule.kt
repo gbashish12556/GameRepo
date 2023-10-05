@@ -1,7 +1,6 @@
 package com.example.android.architecture.blueprints.machinecodingporoject.di
 
 import android.content.Context
-import androidx.room.Room
 import com.example.android.architecture.blueprints.machinecodingporoject.data.DataSource
 import com.example.android.architecture.blueprints.machinecodingporoject.data.JsonDataSource
 import com.example.android.architecture.blueprints.machinecodingporoject.usecase.*
@@ -31,7 +30,7 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideCheckGameResult():CheckGameResult{
+    fun provideCheckGameResult():WordMatchManager{
         return MatchExactWord()
     }
 

@@ -1,5 +1,6 @@
 package com.example.android.architecture.blueprints.machinecodingporoject.usecase
 
-interface CheckGameResult {
+interface WordMatchManager {
     suspend fun checkIfComplete(formedWord:String, currentGamename:String):Boolean
+    suspend fun checkIfCorrectCharacterChosen(character:String, currentGamename:String):Boolean
 }

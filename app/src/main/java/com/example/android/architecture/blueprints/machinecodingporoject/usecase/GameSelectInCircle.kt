@@ -1,5 +1,6 @@
 package com.example.android.architecture.blueprints.machinecodingporoject.usecase
 
+import android.util.Log
 import com.example.android.architecture.blueprints.machinecodingporoject.data.DataSource
 import com.example.android.architecture.blueprints.machinecodingporoject.model.Game
 import kotlinx.coroutines.coroutineScope
@@ -18,8 +19,10 @@ class GameSelectInCircle(var dataSource: DataSource) :GameSelect {
             }
         }
 
-        var currentIndex = currentIndex+1
-        return games.get((currentIndex)/games.size);
+        currentIndex = currentIndex+1
+        Log.d("AshishCurrentIndex",currentIndex.toString())
+
+        return games.get((currentIndex)%games.size);
 
     }
 

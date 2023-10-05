@@ -13,6 +13,7 @@ class DefaultRandomCharacter:RandomCharacters {
 
     override suspend fun getRandomCharacters(gName: String): List<String> {
 
+        formedList.clear()
         var gameName = gName
         while (!gameName.equals("")){
 
