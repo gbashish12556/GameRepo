@@ -8,9 +8,12 @@ import com.example.android.architecture.blueprints.machinecodingporoject.model.G
 import com.example.android.architecture.blueprints.machinecodingporoject.usecase.CheckGameResult
 import com.example.android.architecture.blueprints.machinecodingporoject.usecase.GameSelect
 import com.example.android.architecture.blueprints.machinecodingporoject.usecase.RandomCharacters
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class GameViewModel(val gameSelect:GameSelect,
+@HiltViewModel
+class GameViewModel @Inject constructor(val gameSelect:GameSelect,
                     val checkGameResult:CheckGameResult,
                     val randomCharacter:RandomCharacters): ViewModel() {
 

@@ -12,8 +12,9 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.android.architecture.blueprints.machinecodingporoject.R
 import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 
-@EntryPoint
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: GameViewModel by viewModels()
@@ -56,12 +57,13 @@ class MainActivity : AppCompatActivity() {
 
             val textView = TextView(this)
             textView.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
             textView.gravity = Gravity.CENTER
             textView.text = character.toString()
             textView.textSize = 18f
+            textView.setPadding(10,10,10,10)
             formedWord.addView(textView)
 
         }
@@ -74,12 +76,13 @@ class MainActivity : AppCompatActivity() {
 
             val textView = TextView(this)
             textView.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
             textView.gravity = Gravity.CENTER
             textView.text = listOfCharacter[i].toString()
             textView.textSize = 18f
+            textView.setPadding(10,10,10,10)
             textView.setOnClickListener {view->
                 var character  = (view as TextView).text.toString()
                 if(viewModel.isCorrectCharcterChosen(character) == true){
