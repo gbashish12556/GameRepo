@@ -14,19 +14,18 @@ class DefaultRandomCharacter:RandomCharacters {
     override suspend fun getRandomCharacters(gName: String): List<String> {
 
         formedList.clear()
+        val filteredChars = allChars.filter { char -> !gName.contains(char) }
         var gameName = gName
+
         while (!gameName.equals("")){
 
-            var rand =  (0..2).random()
-            for(i in 0..rand){
-                formedList.add(allChars.random())
-            }
-
+            formedList.add(filteredChars.random())
             var selectedChar = gameName.random().toString()
             formedList.add(selectedChar)
             gameName  = gameName.replace(selectedChar,"",true)
 
         }
+
         return  formedList
 
     }

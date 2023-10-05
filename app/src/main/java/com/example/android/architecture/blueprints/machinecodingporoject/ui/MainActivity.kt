@@ -15,7 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.android.architecture.blueprints.machinecodingporoject.R
-import dagger.hilt.EntryPoint
+import com.nex3z.flowlayout.FlowLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -24,9 +24,11 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: GameViewModel by viewModels()
 
-    private lateinit var optionsLayout:LinearLayout
-    private lateinit var formedWord:LinearLayout
+    private lateinit var optionsLayout:FlowLayout
+    private lateinit var formedWord:FlowLayout
     private lateinit var gameImage:ImageView
+
+    private var listOfView = mutableListOf<View>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,11 +58,16 @@ class MainActivity : AppCompatActivity() {
             inflateOptions(listOfCharacter)
 
         })
+
+        viewModel.selectedTextIndex.observe(this, Observer {index->
+            listOfView[index].visibility = View.VISIBLE
+        })
     }
 
     fun inflateWords(gameName:String){
 
         formedWord.removeAllViews()
+        listOfView.clear()
         for (character in gameName) {
 
             val textView = TextView(this)
@@ -68,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
-            textView.visibility = View.VISIBLE
+            textView.visibility = View.INVISIBLE
             params.setMargins(5,5,5,5)
             textView.layoutParams = params
             textView.setBackgroundColor(Color.GREEN)
@@ -76,6 +83,7 @@ class MainActivity : AppCompatActivity() {
             textView.text = character.toString()
             textView.textSize = 18f
             textView.setPadding(20,10,20,10)
+            listOfView.add(textView)
             formedWord.addView(textView)
 
         }

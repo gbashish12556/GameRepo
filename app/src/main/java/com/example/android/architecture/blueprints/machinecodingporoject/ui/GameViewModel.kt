@@ -22,6 +22,9 @@ class GameViewModel @Inject constructor(val gameSelect:GameSelect,
     private var _currentGame:MutableLiveData<Game> = MutableLiveData()
     var currentGame:LiveData<Game> = _currentGame
 
+    private var _selectedTextIndex:MutableLiveData<Int> = MutableLiveData()
+    var selectedTextIndex:LiveData<Int> = _selectedTextIndex
+
     private var _randomisedCharacter:MutableLiveData<List<String>> = MutableLiveData()
     var randomisedCharacter:LiveData<List<String>> = _randomisedCharacter
 
@@ -53,7 +56,7 @@ class GameViewModel @Inject constructor(val gameSelect:GameSelect,
 
     fun addFormedWord(char: String){
         var index = pendingCharacters.indexOf(char)
-
+        _selectedTextIndex.value = index
         _wordFormed[index] = char
 
         pendingCharacters = pendingCharacters.replaceCharWithHyphen(index)
