@@ -17,11 +17,11 @@ class GameViewModel @Inject constructor(val gameSelect:GameSelect,
                     val checkGameResult:CheckGameResult,
                     val randomCharacter:RandomCharacters): ViewModel() {
 
-    var currentGame:LiveData<Game> = MutableLiveData()
     private var _currentGame:MutableLiveData<Game> = MutableLiveData()
+    var currentGame:LiveData<Game> = _currentGame
 
-    var randomisedCharacter:LiveData<List<String>> = MutableLiveData()
     private var _randomisedCharacter:MutableLiveData<List<String>> = MutableLiveData()
+    var randomisedCharacter:LiveData<List<String>> = _randomisedCharacter
 
     private var _wordFormed:MutableList<String> = mutableListOf()
 
